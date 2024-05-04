@@ -23,8 +23,6 @@ print(colored(f"Софт от: https://t.me/BelugaFan0", 'yellow'))
 print(colored(f"Устройство: {device_name}", 'red'))
 print(colored(f"Время запуска софта: {current_time}", 'cyan'))
 print(colored(f"IP-адрес (если стоит ваш, проверьте ваш прокси): {ip_address}", 'yellow'))
-print(colored(f"Для отправки жалобы на почту, используйте: furfurfur918@gmail.com, пароль: Dapire2023", 'blue'))
-print(colored(f"Для отправки жалобы на support@telegram.org", 'blue'))
 print(colored(f"При сноса, можно отменить нажав CTRL + C", 'red'))
 print(colored(f"Версия софта: pre-alpha v.0.4", 'red'))
 print(colored(f"!!РЕКОМЕНДУЕТСЯ МЕНЯТЬ ПРОКСИ ПОСТОЯННО, ЧТОБЫ РЕАЛЬНО СНОСИТЬ АККАУНТ ЖЕРТВЫ!!", 'red'))
@@ -134,4 +132,20 @@ def main_menu():
             else:
                 print("Неверный выбор.")
         elif choice == '5':
-            send_email("Жалоба на аккаунты Telegram", "Текст жалобы: ...")  # Замените "Текст жалобы: ..."
+            send_email("Жалоба на аккаунты Telegram", "Текст жалобы: ...")  # Замените "Текст жалобы: ..." на ваш текст жалобы
+        elif choice not in ['1', '2']:
+            print("Неверный выбор.")
+        else:
+            limit = 100000
+            with open('num.txt', 'r') as num_file:
+                contact = num_file.read().splitlines()
+
+            with open('text.txt', 'r') as text_file:
+                text = text_file.read().splitlines()
+
+            with open('users.txt', 'r') as user_file:
+                users = user_file.read().splitlines()
+
+            send_complaints(choice, limit, text, contact, users)
+
+main_menu()
